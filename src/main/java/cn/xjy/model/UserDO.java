@@ -1,9 +1,6 @@
 package cn.xjy.model;
 
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 /**
  * ClassName: UserDO
  * Function: UserBean
@@ -13,15 +10,10 @@ import io.swagger.annotations.ApiModelProperty;
  * @version 1
  */
 
-@ApiModel(value = "UserDO", description = "User对象")
 public class UserDO {
-    @ApiModelProperty(value = "用户编号", name = "userId", example = "1")
     private Integer userId;
-    @ApiModelProperty(value = "用户名", name = "userName", example = "test")
     private String userName;
-    @ApiModelProperty(value = "用户密码", name = "password", example = "admin")
     private String password;
-    @ApiModelProperty(value = "用户电话", name = "phone", example = "12345678921")
     private String phone;
 
     public UserDO() {

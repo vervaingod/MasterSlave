@@ -56,12 +56,9 @@ spring:
             loginPassword: 123456
           mapperLocations: classpath:/mapping/*.xml
 
-  flyway:
-    baselineOnMigrate: false
-    locations: classpath:db/migration,classpath:db/migration-mock
 mybatis:
   mapperLocations: classpath:mapping/*.xml
-  typeAliasesPackage: cn.unicom.mip.workbench.model
+  typeAliasesPackage: cn.xjy.model
   configuration:
     global-config: 0
     cacheEnabled: true
