@@ -1,0 +1,82 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: default
+  application:
+    name: test
+  datasource:
+    druid:
+        write:
+          url: jdbc:mysql://localhost:3306/master_slave?useUnicode=true&characterEncoding=utf-8&useSSL=false
+          username: root
+          password: root
+          driverClassName: com.mysql.jdbc.Driver
+          initialSize: 5
+          minIdle: 5
+          maxActive: 100
+          maxWait: 6000
+          timeBetweenEvictionRunsMillis: 60000
+          minEvictableIdleTimeMillis: 300000
+          validationQuery: SELECT 1 FROM DUAL
+          testWhileIdle: true
+          testOnBorrow: false
+          testOnReturn: false
+          poolPreparedStatements: true
+          maxPoolPreparedStatementPerConnectionSize: 20
+          connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+          filters: stat,wall
+          useGlobalDataSourceStat: true
+          statViewServlet:
+            loginUsername: admin
+            loginPassword: 123456
+          mapperLocations: classpath:/mapping/*.xml
+        read:
+          url: jdbc:mysql://localhost:3306/master_slave?useUnicode=true&characterEncoding=utf-8&useSSL=false
+          username: root
+          password: root
+          driverClassName: com.mysql.jdbc.Driver
+          initialSize: 5
+          minIdle: 5
+          maxActive: 100
+          maxWait: 6000
+          timeBetweenEvictionRunsMillis: 60000
+          minEvictableIdleTimeMillis: 300000
+          validationQuery: SELECT 1 FROM DUAL
+          testWhileIdle: true
+          testOnBorrow: false
+          testOnReturn: false
+          poolPreparedStatements: true
+          maxPoolPreparedStatementPerConnectionSize: 20
+          connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+          filters: stat,wall
+          useGlobalDataSourceStat: true
+          statViewServlet:
+            loginUsername: admin
+            loginPassword: 123456
+          mapperLocations: classpath:/mapping/*.xml
+
+  flyway:
+    baselineOnMigrate: false
+    locations: classpath:db/migration,classpath:db/migration-mock
+mybatis:
+  mapperLocations: classpath:mapping/*.xml
+  typeAliasesPackage: cn.unicom.mip.workbench.model
+  configuration:
+    global-config: 0
+    cacheEnabled: true
+    multipleResultSetsEnabled: true
+    aggressiveLazyLoading: true
+    useColumnLabel: true
+    useGeneratedKeys: false
+    autoMappingBehavior: partial
+    defaultExecutorType: simple
+    mapUnderscoreToCamel-case: true
+    localCacheScope: session
+    jdbcTypeForNull: null
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
