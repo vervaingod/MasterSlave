@@ -24,7 +24,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @MapperScan(basePackages = {"cn.xjy.mapper"},
-        sqlSessionFactoryRef = "WriteSqlSessionFactory")
+        sqlSessionFactoryRef = "SqlSessionFactory")
 public class WriteDataSourceConfig {
     @Value("${spring.datasource.druid.write.mapperLocations}")
     private String WriteMapperLocations;
@@ -43,32 +43,32 @@ public class WriteDataSourceConfig {
      * @return
      * @throws Exception
      */
-    @Bean(name = "WriteSqlSessionFactory")
-    @Primary
-    public SqlSessionFactory WriteSqlSessionFactory(
-            @Qualifier("WriteDataSource") DataSource dataSource
-    ) throws Exception {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource);
-
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        // 配置mapper文件位置
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources(WriteMapperLocations));
-        return sqlSessionFactoryBean.getObject();
-    }
+//    @Bean(name = "WriteSqlSessionFactory")
+//    @Primary
+//    public SqlSessionFactory WriteSqlSessionFactory(
+//            @Qualifier("WriteDataSource") DataSource dataSource
+//    ) throws Exception {
+//        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+//        sqlSessionFactoryBean.setDataSource(dataSource);
+//
+//        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+//        // 配置mapper文件位置
+//        sqlSessionFactoryBean.setMapperLocations(resolver.getResources(WriteMapperLocations));
+//        return sqlSessionFactoryBean.getObject();
+//    }
 
     /**
      * 配置事物管理器
      *
      * @return
      */
-    @Bean(name = "WriteTransactionManager")
-    @Primary
-    public DataSourceTransactionManager WriteTransactionManager(
-            @Qualifier("WriteDataSource") DataSource dataSource
-    ) {
-        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-        dataSourceTransactionManager.setDataSource(dataSource);
-        return dataSourceTransactionManager;
-    }
+//    @Bean(name = "WriteTransactionManager")
+//    @Primary
+//    public DataSourceTransactionManager WriteTransactionManager(
+//            @Qualifier("WriteDataSource") DataSource dataSource
+//    ) {
+//        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
+//        dataSourceTransactionManager.setDataSource(dataSource);
+//        return dataSourceTransactionManager;
+//    }
 }
